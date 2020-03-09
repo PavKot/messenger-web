@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main_block"
+            style="margin: 5vw; margin-top: 10vw; box-shadow: 7px 7px 55px rgba(0, 0, 0, 0.09); padding: 3vw; text-align: left;">
+            <h1>Profile</h1>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword2">Repeat password</label>
+                    <input style="border-radius: 0px;" type="password" class="form-control" id="exampleInputPassword2">
+                </div>
+                <button type="button" class="btn btn-success">Save changes</button>
+                <button id="button-sign-out" type="button" class="btn btn-danger">Sign out</button>
+            </form>
+        </div>
+        <button id="button-return-to-main" type="button" class="btn btn-dark"
+            style="border-radius: 0px; display: block; margin: 0 auto;">Return on main</button>
+    </div>
+
+
+
+    <!-- <script src="js/api.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $.ajax({
+        type: "POST",
+        url: "http://34.89.228.115/api/User/login",
+        async: true,
+        cache: false,
+        crossDomain: true,
+        data: '{ "FullName": "Nazar Potipaka", "Username": "mutado", "Email": "1235@gmail.com", "Password": "123456" }',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (responseData, textStatus, jqXHR) {
+            console.log(document.cookie)
+        },
+        error: function (responseData, textStatus, errorThrown) {
+          alert('POST failed.');
+        }
+      });
+
+
+        document.getElementById("button-return-to-main").addEventListener('click', () => {
+            window.location.replace("main.html");
+        })
+
+        document.getElementById("button-sign-out").addEventListener('click', () => {
+            localStorage.removeItem("userId")
+            localStorage.removeItem("username")
+            localStorage.removeItem("fullName")
+        })
+    </script>
+</body>
+
+</html>
